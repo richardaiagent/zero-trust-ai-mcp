@@ -1,0 +1,37 @@
+# .dockerignore — build context 크기 최소화
+# docker-compose context: ../ (프로젝트 루트) 기준
+
+# 문서/에셋
+docs/
+assets/
+
+# 인프라 설정 (컨테이너 내부 불필요)
+infra/
+
+# Python 캐시
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# 가상환경
+**/.venv/
+**/venv/
+**/.env
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+**/.DS_Store
+
+# 테스트/CI
+**/tests/
+**/*.test.*
+.gitlab-ci.yml

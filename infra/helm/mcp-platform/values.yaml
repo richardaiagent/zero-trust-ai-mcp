@@ -1,0 +1,128 @@
+# infra/helm/mcp-platform/values.yaml
+# Minikube 로컬 실습 기준값 — 운영은 values-prod.yaml로 오버라이드
+
+global:
+  imageRegistry: ""        # 프라이빗 레지스트리 주소 (예: registry.company.com)
+  imagePullPolicy: IfNotPresent
+
+# ── 서비스별 설정 ──────────────────────────
+
+gateway:
+  replicaCount: 1
+  image:
+    repository: mcp-gateway
+    tag: "0.1.0"
+  port: 8080
+  service:
+    type: NodePort          # Minikube 로컬 접근용
+    nodePort: 30080
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+orchestrator:
+  replicaCount: 1
+  image:
+    repository: mcp-orchestrator
+    tag: "0.1.0"
+  port: 8081
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+
+ragService:
+  replicaCount: 1
+  image:
+    repository: mcp-rag-service
+    tag: "0.1.0"
+  port: 8082
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+toolService:
+  replicaCount: 1
+  image:
+    repository: mcp-tool-service
+    tag: "0.1.0"
+  port: 8083
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+contextService:
+  replicaCount: 1
+  image:
+    repository: mcp-context-service
+    tag: "0.1.0"
+  port: 8084
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+policyEngine:
+  replicaCount: 1
+  image:
+    repository: mcp-policy-engine
+    tag: "0.1.0"
+  port: 8085
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+auditService:
+  replicaCount: 1
+  image:
+    repository: mcp-audit-service
+    tag: "0.1.0"
+  port: 8086
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+# ── 인프라 컴포넌트 ────────────────────────
+
+redis:
+  host: redis
+  port: 6379
+  # 실제 값은 K8s Secret으로 주입 (values에 평문 금지)
+  passwordSecretName: mcp-redis-secret
+  passwordSecretKey: password
+
+postgres:
+  host: postgres
+  port: 5432
+  passwordSecretName: mcp-postgres-secret
+  passwordSecretKey: password
+
+chroma:
+  host: chroma
+  port: 8000

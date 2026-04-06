@@ -1,0 +1,50 @@
+# infra/prometheus.yml
+# Chapter 13: MCP 플랫폼 메트릭 수집 설정
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    environment: local
+
+scrape_configs:
+  # ── MCP 마이크로서비스 ──────────────────
+  - job_name: gateway
+    static_configs:
+      - targets: ["gateway:8000"]
+    metrics_path: /metrics
+
+  - job_name: orchestrator
+    static_configs:
+      - targets: ["orchestrator:8001"]
+    metrics_path: /metrics
+
+  - job_name: policy-engine
+    static_configs:
+      - targets: ["policy-engine:8002"]
+    metrics_path: /metrics
+
+  - job_name: tool-service
+    static_configs:
+      - targets: ["tool-service:8003"]
+    metrics_path: /metrics
+
+  - job_name: rag-service
+    static_configs:
+      - targets: ["rag-service:8004"]
+    metrics_path: /metrics
+
+  - job_name: context-service
+    static_configs:
+      - targets: ["context-service:8005"]
+    metrics_path: /metrics
+
+  - job_name: audit-service
+    static_configs:
+      - targets: ["audit-service:8006"]
+    metrics_path: /metrics
+
+  # ── 인프라 컴포넌트 ─────────────────────
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

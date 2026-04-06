@@ -1,0 +1,7 @@
+# infra/helm/mcp-platform/Chart.yaml
+apiVersion: v2
+name: mcp-platform
+description: Zero Trust AI MCP Platform — Helm Chart
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

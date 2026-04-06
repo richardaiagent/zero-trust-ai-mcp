@@ -1,0 +1,8 @@
+# infra/k8s/namespace.yaml
+# 관련 챕터: Chapter 7
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mcp
+  labels:
+    environment: development
