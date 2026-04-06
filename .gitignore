@@ -1,0 +1,39 @@
+# Claude Cowork - 로컬 전용 파일 (GitHub 비공개)
+CLAUDE.md
+.claude/
+
+# 환경변수
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Java / Spring Boot
+target/
+build/
+*.jar
+*.class
+
+# Node
+node_modules/
+dist/
+.next/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
